@@ -307,10 +307,13 @@ void configure_paths() {
 #ifdef NDEBUG
     //install_app(exe_path.c_str());
 #endif
+#if defined(NON_PORTABLE) || defined(Q_OS_MACOS)
     standard_data_path = Path(QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).at(0).toStdWString());
-    QStringList all_config_paths = QStandardPaths::standardLocations(QStandardPaths::AppConfigLocation);
-
     standard_data_path.create_directories();
+#else
+    standard_data_path = parent_path;
+#endif
+    QStringList all_config_paths = QStandardPaths::standardLocations(QStandardPaths::AppConfigLocation);
 
 #ifndef Q_OS_MACOS
     default_config_path = parent_path.slash(L"prefs.config");
