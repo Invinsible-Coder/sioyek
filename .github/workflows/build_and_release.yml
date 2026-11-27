@@ -31,7 +31,7 @@ jobs:
           ./mac-uploads/sioyek-release-mac.zip \
           ./mac-arm-uploads/sioyek-release-mac-arm.zip \
           ./linux-uploads/sioyek-release-linux.zip \
-          ./windows-uploads/sioyek-release-windows.zip
+          ./windows-uploads/sioyek-release-windows-portable.zip
 
   build-linux:
 
@@ -106,13 +106,13 @@ jobs:
       
     - name: Build Sioyek
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: .\build_windows.bat non_portable
+      run: .\build_windows.bat portable non_portable
       
     - name: upload windows artifact
       uses: actions/upload-artifact@v7
       with:
         name: windows-uploads
-        path: sioyek-release-windows.zip
+        path: sioyek-release-windows-portable.zip
         
   build-mac:
 
