@@ -106,7 +106,7 @@ jobs:
       
     - name: Build Sioyek
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: .\build_windows.bat portable non_portable
+      run: .\build_windows.bat portable
       
     - name: upload windows artifact
       uses: actions/upload-artifact@v7
