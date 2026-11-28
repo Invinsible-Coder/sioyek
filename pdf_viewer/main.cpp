@@ -940,15 +940,6 @@ int main(int argc, char* args[]) {
 
     main_widget->show();
 
-    if (parser->positionalArguments().size() == 0 && SHOULD_LAUNCH_NEW_WINDOW) {
-        QTimer::singleShot(0, &app, []() {
-            std::vector<std::wstring> saved_tabs = get_last_opened_file_name();
-            for (size_t i = 1; i < saved_tabs.size(); i++) {
-                handle_args(QStringList() << QCoreApplication::applicationFilePath() << QString::fromStdWString(saved_tabs[i]));
-            }
-        });
-    }
-
     // load input file from `QFileOpenEvent` for macOS drag and drop & "open with"
     QObject::connect(&app, &OpenWithApplication::file_ready, [&main_widget](const QString& file_name) {
         handle_args(QStringList() << QCoreApplication::applicationFilePath() << file_name);
