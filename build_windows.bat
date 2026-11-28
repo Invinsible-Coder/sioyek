@@ -10,7 +10,7 @@ cd ..
 if "%1"=="portable" (
     qmake -tp vc "CONFIG+=release" pdf_viewer_build_config.pro
 ) else (
-    qmake -tp vc "DEFINES+=NON_PORTABLE" "CONFIG+=release" pdf_viewer_build_config.pro
+    qmake -tp vc "CONFIG+=release" pdf_viewer_build_config.pro
 )
 
 msbuild -maxcpucount sioyek.vcxproj /m /property:Configuration=Release
